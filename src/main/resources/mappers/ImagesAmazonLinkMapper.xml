@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mujia.amazon_mj.mapper.ImagesAmazonLinkMapper">
+  <resultMap id="BaseResultMap" type="com.mujia.amazon_mj.model.ImagesAmazonLink">
+    <result column="ASIN" jdbcType="VARCHAR" property="asin" />
+    <result column="Country" jdbcType="VARCHAR" property="country" />
+    <result column="ImageLink" jdbcType="VARCHAR" property="imagelink" />
+    <result column="OrderId" jdbcType="TINYINT" property="orderid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ASIN, Country, ImageLink, OrderId
+  </sql>
+  <select id="selectByExample" parameterType="com.mujia.amazon_mj.model.ImagesAmazonLinkExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MJ_Product_Images_AmazonLink
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mujia.amazon_mj.model.ImagesAmazonLinkExample">
+    delete from MJ_Product_Images_AmazonLink
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mujia.amazon_mj.model.ImagesAmazonLink">
+    insert into MJ_Product_Images_AmazonLink (ASIN, Country, ImageLink, 
+      OrderId)
+    values (#{asin,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{imagelink,jdbcType=VARCHAR}, 
+      #{orderid,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mujia.amazon_mj.model.ImagesAmazonLink">
+    insert into MJ_Product_Images_AmazonLink
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="asin != null">
+        ASIN,
+      </if>
+      <if test="country != null">
+        Country,
+      </if>
+      <if test="imagelink != null">
+        ImageLink,
+      </if>
+      <if test="orderid != null">
+        OrderId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="asin != null">
+        #{asin,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="imagelink != null">
+        #{imagelink,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mujia.amazon_mj.model.ImagesAmazonLinkExample" resultType="java.lang.Long">
+    select count(*) from MJ_Product_Images_AmazonLink
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update MJ_Product_Images_AmazonLink
+    <set>
+      <if test="record.asin != null">
+        ASIN = #{record.asin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null">
+        Country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imagelink != null">
+        ImageLink = #{record.imagelink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderid != null">
+        OrderId = #{record.orderid,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update MJ_Product_Images_AmazonLink
+    set ASIN = #{record.asin,jdbcType=VARCHAR},
+      Country = #{record.country,jdbcType=VARCHAR},
+      ImageLink = #{record.imagelink,jdbcType=VARCHAR},
+      OrderId = #{record.orderid,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

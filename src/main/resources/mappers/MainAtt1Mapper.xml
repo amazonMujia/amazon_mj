@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mujia.amazon_mj.mapper.MainAtt1Mapper">
+  <resultMap id="BaseResultMap" type="com.mujia.amazon_mj.model.MainAtt1">
+    <result column="MainAsin" jdbcType="VARCHAR" property="mainasin" />
+    <result column="Country" jdbcType="VARCHAR" property="country" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="MainImage" jdbcType="VARCHAR" property="mainimage" />
+    <result column="Description" jdbcType="VARCHAR" property="description" />
+    <result column="Height" jdbcType="DECIMAL" property="height" />
+    <result column="Length" jdbcType="DECIMAL" property="length" />
+    <result column="Weight" jdbcType="DECIMAL" property="weight" />
+    <result column="Width" jdbcType="DECIMAL" property="width" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    MainAsin, Country, Name, MainImage, Description, Height, Length, Weight, Width
+  </sql>
+  <select id="selectByExample" parameterType="com.mujia.amazon_mj.model.MainAtt1Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MJ_Product_Main_Att1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mujia.amazon_mj.model.MainAtt1Example">
+    delete from MJ_Product_Main_Att1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mujia.amazon_mj.model.MainAtt1">
+    insert into MJ_Product_Main_Att1 (MainAsin, Country, Name, 
+      MainImage, Description, Height, 
+      Length, Weight, Width
+      )
+    values (#{mainasin,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{mainimage,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{height,jdbcType=DECIMAL}, 
+      #{length,jdbcType=DECIMAL}, #{weight,jdbcType=DECIMAL}, #{width,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mujia.amazon_mj.model.MainAtt1">
+    insert into MJ_Product_Main_Att1
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mainasin != null">
+        MainAsin,
+      </if>
+      <if test="country != null">
+        Country,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="mainimage != null">
+        MainImage,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+      <if test="height != null">
+        Height,
+      </if>
+      <if test="length != null">
+        Length,
+      </if>
+      <if test="weight != null">
+        Weight,
+      </if>
+      <if test="width != null">
+        Width,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mainasin != null">
+        #{mainasin,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mainimage != null">
+        #{mainimage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mujia.amazon_mj.model.MainAtt1Example" resultType="java.lang.Long">
+    select count(*) from MJ_Product_Main_Att1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update MJ_Product_Main_Att1
+    <set>
+      <if test="record.mainasin != null">
+        MainAsin = #{record.mainasin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null">
+        Country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        Name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainimage != null">
+        MainImage = #{record.mainimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        Description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.height != null">
+        Height = #{record.height,jdbcType=DECIMAL},
+      </if>
+      <if test="record.length != null">
+        Length = #{record.length,jdbcType=DECIMAL},
+      </if>
+      <if test="record.weight != null">
+        Weight = #{record.weight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.width != null">
+        Width = #{record.width,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update MJ_Product_Main_Att1
+    set MainAsin = #{record.mainasin,jdbcType=VARCHAR},
+      Country = #{record.country,jdbcType=VARCHAR},
+      Name = #{record.name,jdbcType=VARCHAR},
+      MainImage = #{record.mainimage,jdbcType=VARCHAR},
+      Description = #{record.description,jdbcType=VARCHAR},
+      Height = #{record.height,jdbcType=DECIMAL},
+      Length = #{record.length,jdbcType=DECIMAL},
+      Weight = #{record.weight,jdbcType=DECIMAL},
+      Width = #{record.width,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

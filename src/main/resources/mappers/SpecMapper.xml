@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mujia.amazon_mj.mapper.SpecMapper">
+  <resultMap id="BaseResultMap" type="com.mujia.amazon_mj.model.Spec">
+    <result column="ASIN" jdbcType="VARCHAR" property="asin" />
+    <result column="MainAsinId" jdbcType="INTEGER" property="mainasinid" />
+    <result column="MainASIN" jdbcType="VARCHAR" property="mainasin" />
+    <result column="ShopName" jdbcType="VARCHAR" property="shopname" />
+    <result column="Country" jdbcType="VARCHAR" property="country" />
+    <result column="Size" jdbcType="VARCHAR" property="size" />
+    <result column="Color" jdbcType="VARCHAR" property="color" />
+    <result column="Price" jdbcType="DECIMAL" property="price" />
+    <result column="DealPrice" jdbcType="DECIMAL" property="dealprice" />
+    <result column="ShippingFee" jdbcType="DECIMAL" property="shippingfee" />
+    <result column="Shortage" jdbcType="INTEGER" property="shortage" />
+    <result column="MainImage" jdbcType="VARCHAR" property="mainimage" />
+    <result column="GetDate" jdbcType="TIMESTAMP" property="getdate" />
+    <result column="IsAmazonChoice" jdbcType="INTEGER" property="isamazonchoice" />
+    <result column="AmazonChoiceKeyword" jdbcType="VARCHAR" property="amazonchoicekeyword" />
+    <result column="PromotionNum" jdbcType="INTEGER" property="promotionnum" />
+    <result column="PromotionDetails" jdbcType="VARCHAR" property="promotiondetails" />
+    <result column="BigCategoryRank" jdbcType="INTEGER" property="bigcategoryrank" />
+    <result column="SmallCategoryRank" jdbcType="INTEGER" property="smallcategoryrank" />
+    <result column="page_description" jdbcType="VARCHAR" property="pageDescription" />
+    <result column="page_title" jdbcType="VARCHAR" property="pageTitle" />
+    <result column="page_keywords" jdbcType="VARCHAR" property="pageKeywords" />
+    <result column="MacAddress" jdbcType="VARCHAR" property="macaddress" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ASIN, MainAsinId, MainASIN, ShopName, Country, Size, Color, Price, DealPrice, ShippingFee, 
+    Shortage, MainImage, GetDate, IsAmazonChoice, AmazonChoiceKeyword, PromotionNum, 
+    PromotionDetails, BigCategoryRank, SmallCategoryRank, page_description, page_title, 
+    page_keywords, MacAddress, UserName
+  </sql>
+  <select id="selectByExample" parameterType="com.mujia.amazon_mj.model.SpecExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MJ_Product_Spec
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mujia.amazon_mj.model.SpecExample">
+    delete from MJ_Product_Spec
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mujia.amazon_mj.model.Spec">
+    insert into MJ_Product_Spec (ASIN, MainAsinId, MainASIN, 
+      ShopName, Country, Size, 
+      Color, Price, DealPrice, 
+      ShippingFee, Shortage, MainImage, 
+      GetDate, IsAmazonChoice, AmazonChoiceKeyword, 
+      PromotionNum, PromotionDetails, BigCategoryRank, 
+      SmallCategoryRank, page_description, page_title, 
+      page_keywords, MacAddress, UserName
+      )
+    values (#{asin,jdbcType=VARCHAR}, #{mainasinid,jdbcType=INTEGER}, #{mainasin,jdbcType=VARCHAR}, 
+      #{shopname,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
+      #{color,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{dealprice,jdbcType=DECIMAL}, 
+      #{shippingfee,jdbcType=DECIMAL}, #{shortage,jdbcType=INTEGER}, #{mainimage,jdbcType=VARCHAR}, 
+      #{getdate,jdbcType=TIMESTAMP}, #{isamazonchoice,jdbcType=INTEGER}, #{amazonchoicekeyword,jdbcType=VARCHAR}, 
+      #{promotionnum,jdbcType=INTEGER}, #{promotiondetails,jdbcType=VARCHAR}, #{bigcategoryrank,jdbcType=INTEGER}, 
+      #{smallcategoryrank,jdbcType=INTEGER}, #{pageDescription,jdbcType=VARCHAR}, #{pageTitle,jdbcType=VARCHAR}, 
+      #{pageKeywords,jdbcType=VARCHAR}, #{macaddress,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mujia.amazon_mj.model.Spec">
+    insert into MJ_Product_Spec
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="asin != null">
+        ASIN,
+      </if>
+      <if test="mainasinid != null">
+        MainAsinId,
+      </if>
+      <if test="mainasin != null">
+        MainASIN,
+      </if>
+      <if test="shopname != null">
+        ShopName,
+      </if>
+      <if test="country != null">
+        Country,
+      </if>
+      <if test="size != null">
+        Size,
+      </if>
+      <if test="color != null">
+        Color,
+      </if>
+      <if test="price != null">
+        Price,
+      </if>
+      <if test="dealprice != null">
+        DealPrice,
+      </if>
+      <if test="shippingfee != null">
+        ShippingFee,
+      </if>
+      <if test="shortage != null">
+        Shortage,
+      </if>
+      <if test="mainimage != null">
+        MainImage,
+      </if>
+      <if test="getdate != null">
+        GetDate,
+      </if>
+      <if test="isamazonchoice != null">
+        IsAmazonChoice,
+      </if>
+      <if test="amazonchoicekeyword != null">
+        AmazonChoiceKeyword,
+      </if>
+      <if test="promotionnum != null">
+        PromotionNum,
+      </if>
+      <if test="promotiondetails != null">
+        PromotionDetails,
+      </if>
+      <if test="bigcategoryrank != null">
+        BigCategoryRank,
+      </if>
+      <if test="smallcategoryrank != null">
+        SmallCategoryRank,
+      </if>
+      <if test="pageDescription != null">
+        page_description,
+      </if>
+      <if test="pageTitle != null">
+        page_title,
+      </if>
+      <if test="pageKeywords != null">
+        page_keywords,
+      </if>
+      <if test="macaddress != null">
+        MacAddress,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="asin != null">
+        #{asin,jdbcType=VARCHAR},
+      </if>
+      <if test="mainasinid != null">
+        #{mainasinid,jdbcType=INTEGER},
+      </if>
+      <if test="mainasin != null">
+        #{mainasin,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null">
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="dealprice != null">
+        #{dealprice,jdbcType=DECIMAL},
+      </if>
+      <if test="shippingfee != null">
+        #{shippingfee,jdbcType=DECIMAL},
+      </if>
+      <if test="shortage != null">
+        #{shortage,jdbcType=INTEGER},
+      </if>
+      <if test="mainimage != null">
+        #{mainimage,jdbcType=VARCHAR},
+      </if>
+      <if test="getdate != null">
+        #{getdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isamazonchoice != null">
+        #{isamazonchoice,jdbcType=INTEGER},
+      </if>
+      <if test="amazonchoicekeyword != null">
+        #{amazonchoicekeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionnum != null">
+        #{promotionnum,jdbcType=INTEGER},
+      </if>
+      <if test="promotiondetails != null">
+        #{promotiondetails,jdbcType=VARCHAR},
+      </if>
+      <if test="bigcategoryrank != null">
+        #{bigcategoryrank,jdbcType=INTEGER},
+      </if>
+      <if test="smallcategoryrank != null">
+        #{smallcategoryrank,jdbcType=INTEGER},
+      </if>
+      <if test="pageDescription != null">
+        #{pageDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="pageTitle != null">
+        #{pageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pageKeywords != null">
+        #{pageKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="macaddress != null">
+        #{macaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mujia.amazon_mj.model.SpecExample" resultType="java.lang.Long">
+    select count(*) from MJ_Product_Spec
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update MJ_Product_Spec
+    <set>
+      <if test="record.asin != null">
+        ASIN = #{record.asin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainasinid != null">
+        MainAsinId = #{record.mainasinid,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainasin != null">
+        MainASIN = #{record.mainasin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopname != null">
+        ShopName = #{record.shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null">
+        Country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.size != null">
+        Size = #{record.size,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null">
+        Color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        Price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dealprice != null">
+        DealPrice = #{record.dealprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shippingfee != null">
+        ShippingFee = #{record.shippingfee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shortage != null">
+        Shortage = #{record.shortage,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainimage != null">
+        MainImage = #{record.mainimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.getdate != null">
+        GetDate = #{record.getdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isamazonchoice != null">
+        IsAmazonChoice = #{record.isamazonchoice,jdbcType=INTEGER},
+      </if>
+      <if test="record.amazonchoicekeyword != null">
+        AmazonChoiceKeyword = #{record.amazonchoicekeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promotionnum != null">
+        PromotionNum = #{record.promotionnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.promotiondetails != null">
+        PromotionDetails = #{record.promotiondetails,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bigcategoryrank != null">
+        BigCategoryRank = #{record.bigcategoryrank,jdbcType=INTEGER},
+      </if>
+      <if test="record.smallcategoryrank != null">
+        SmallCategoryRank = #{record.smallcategoryrank,jdbcType=INTEGER},
+      </if>
+      <if test="record.pageDescription != null">
+        page_description = #{record.pageDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pageTitle != null">
+        page_title = #{record.pageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pageKeywords != null">
+        page_keywords = #{record.pageKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.macaddress != null">
+        MacAddress = #{record.macaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null">
+        UserName = #{record.username,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update MJ_Product_Spec
+    set ASIN = #{record.asin,jdbcType=VARCHAR},
+      MainAsinId = #{record.mainasinid,jdbcType=INTEGER},
+      MainASIN = #{record.mainasin,jdbcType=VARCHAR},
+      ShopName = #{record.shopname,jdbcType=VARCHAR},
+      Country = #{record.country,jdbcType=VARCHAR},
+      Size = #{record.size,jdbcType=VARCHAR},
+      Color = #{record.color,jdbcType=VARCHAR},
+      Price = #{record.price,jdbcType=DECIMAL},
+      DealPrice = #{record.dealprice,jdbcType=DECIMAL},
+      ShippingFee = #{record.shippingfee,jdbcType=DECIMAL},
+      Shortage = #{record.shortage,jdbcType=INTEGER},
+      MainImage = #{record.mainimage,jdbcType=VARCHAR},
+      GetDate = #{record.getdate,jdbcType=TIMESTAMP},
+      IsAmazonChoice = #{record.isamazonchoice,jdbcType=INTEGER},
+      AmazonChoiceKeyword = #{record.amazonchoicekeyword,jdbcType=VARCHAR},
+      PromotionNum = #{record.promotionnum,jdbcType=INTEGER},
+      PromotionDetails = #{record.promotiondetails,jdbcType=VARCHAR},
+      BigCategoryRank = #{record.bigcategoryrank,jdbcType=INTEGER},
+      SmallCategoryRank = #{record.smallcategoryrank,jdbcType=INTEGER},
+      page_description = #{record.pageDescription,jdbcType=VARCHAR},
+      page_title = #{record.pageTitle,jdbcType=VARCHAR},
+      page_keywords = #{record.pageKeywords,jdbcType=VARCHAR},
+      MacAddress = #{record.macaddress,jdbcType=VARCHAR},
+      UserName = #{record.username,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

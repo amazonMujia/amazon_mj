@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--导入资源文件 -->
+<!-- <context:property-placeholder location="classpath:db.properties" /> -->
+
+
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!--阻止所有注释产生 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--配置数据库连接 -->
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://139.217.232.146:1433; DatabaseName=mujia;" userId="MJ_enh2019"
+                        password="jsHhgd81$763JdV">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--指定javabean生成位置 -->
+        <javaModelGenerator targetPackage="com.mujia.amazon_mj.model"
+                            targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--指定sql映射文件生成位置 -->
+        <sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--指定DAO接口生成位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.mujia.amazon_mj.mapper" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--指定每张表的生成策略 -->
+        <table tableName="MJ_Product_CustomerReview" domainObjectName="CustomerReview"></table>
+        <table tableName="MJ_Product_Images_AmazonLink" domainObjectName="ImagesAmazonLink"></table>
+        <table tableName="MJ_Product_KeywordsList" domainObjectName="KeywordsList"></table>
+        <table tableName="MJ_Product_Main" domainObjectName="Main"></table>
+        <table tableName="MJ_Product_Main_Att1" domainObjectName="MainAtt1"></table>
+        <table tableName="MJ_Product_Main_Features" domainObjectName="MainFeatures"></table>
+        <table tableName="MJ_Product_RankList" domainObjectName="RankList"></table>
+        <table tableName="MJ_Product_Spec" domainObjectName="Spec"></table>
+        <table tableName="MJ_Product_task" domainObjectName="task"></table>
+
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mujia.amazon_mj.mapper.CustomerReviewMapper">
+  <resultMap id="BaseResultMap" type="com.mujia.amazon_mj.model.CustomerReview">
+    <result column="ASIN" jdbcType="VARCHAR" property="asin" />
+    <result column="Country" jdbcType="VARCHAR" property="country" />
+    <result column="Star1" jdbcType="INTEGER" property="star1" />
+    <result column="Star2" jdbcType="INTEGER" property="star2" />
+    <result column="Star3" jdbcType="INTEGER" property="star3" />
+    <result column="Star4" jdbcType="INTEGER" property="star4" />
+    <result column="Star5" jdbcType="INTEGER" property="star5" />
+    <result column="CreateDate" jdbcType="TIMESTAMP" property="createdate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ASIN, Country, Star1, Star2, Star3, Star4, Star5, CreateDate
+  </sql>
+  <select id="selectByExample" parameterType="com.mujia.amazon_mj.model.CustomerReviewExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MJ_Product_CustomerReview
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mujia.amazon_mj.model.CustomerReviewExample">
+    delete from MJ_Product_CustomerReview
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mujia.amazon_mj.model.CustomerReview">
+    insert into MJ_Product_CustomerReview (ASIN, Country, Star1, 
+      Star2, Star3, Star4, 
+      Star5, CreateDate)
+    values (#{asin,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{star1,jdbcType=INTEGER}, 
+      #{star2,jdbcType=INTEGER}, #{star3,jdbcType=INTEGER}, #{star4,jdbcType=INTEGER}, 
+      #{star5,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mujia.amazon_mj.model.CustomerReview">
+    insert into MJ_Product_CustomerReview
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="asin != null">
+        ASIN,
+      </if>
+      <if test="country != null">
+        Country,
+      </if>
+      <if test="star1 != null">
+        Star1,
+      </if>
+      <if test="star2 != null">
+        Star2,
+      </if>
+      <if test="star3 != null">
+        Star3,
+      </if>
+      <if test="star4 != null">
+        Star4,
+      </if>
+      <if test="star5 != null">
+        Star5,
+      </if>
+      <if test="createdate != null">
+        CreateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="asin != null">
+        #{asin,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="star1 != null">
+        #{star1,jdbcType=INTEGER},
+      </if>
+      <if test="star2 != null">
+        #{star2,jdbcType=INTEGER},
+      </if>
+      <if test="star3 != null">
+        #{star3,jdbcType=INTEGER},
+      </if>
+      <if test="star4 != null">
+        #{star4,jdbcType=INTEGER},
+      </if>
+      <if test="star5 != null">
+        #{star5,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mujia.amazon_mj.model.CustomerReviewExample" resultType="java.lang.Long">
+    select count(*) from MJ_Product_CustomerReview
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update MJ_Product_CustomerReview
+    <set>
+      <if test="record.asin != null">
+        ASIN = #{record.asin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null">
+        Country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.star1 != null">
+        Star1 = #{record.star1,jdbcType=INTEGER},
+      </if>
+      <if test="record.star2 != null">
+        Star2 = #{record.star2,jdbcType=INTEGER},
+      </if>
+      <if test="record.star3 != null">
+        Star3 = #{record.star3,jdbcType=INTEGER},
+      </if>
+      <if test="record.star4 != null">
+        Star4 = #{record.star4,jdbcType=INTEGER},
+      </if>
+      <if test="record.star5 != null">
+        Star5 = #{record.star5,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdate != null">
+        CreateDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update MJ_Product_CustomerReview
+    set ASIN = #{record.asin,jdbcType=VARCHAR},
+      Country = #{record.country,jdbcType=VARCHAR},
+      Star1 = #{record.star1,jdbcType=INTEGER},
+      Star2 = #{record.star2,jdbcType=INTEGER},
+      Star3 = #{record.star3,jdbcType=INTEGER},
+      Star4 = #{record.star4,jdbcType=INTEGER},
+      Star5 = #{record.star5,jdbcType=INTEGER},
+      CreateDate = #{record.createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
