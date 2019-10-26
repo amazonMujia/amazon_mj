@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mujia.amazon_mj.mapper.MainMapper">
   <resultMap id="BaseResultMap" type="com.mujia.amazon_mj.model.Main">
-    <result column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="MainASIN" jdbcType="VARCHAR" property="mainasin" />
     <result column="RelationASIN" jdbcType="VARCHAR" property="relationasin" />
     <result column="ShopName" jdbcType="VARCHAR" property="shopname" />
@@ -97,6 +97,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MJ_Product_Main
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from MJ_Product_Main
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
   <delete id="deleteByExample" parameterType="com.mujia.amazon_mj.model.MainExample">
     delete from MJ_Product_Main
     <if test="_parameter != null">
@@ -313,5 +323,79 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mujia.amazon_mj.model.Main">
+    update MJ_Product_Main
+    <set>
+      <if test="mainasin != null">
+        MainASIN = #{mainasin,jdbcType=VARCHAR},
+      </if>
+      <if test="relationasin != null">
+        RelationASIN = #{relationasin,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null">
+        ShopName = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        Country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="ratings != null">
+        ratings = #{ratings,jdbcType=INTEGER},
+      </if>
+      <if test="customerreviews != null">
+        CustomerReviews = #{customerreviews,jdbcType=INTEGER},
+      </if>
+      <if test="answeredquestions != null">
+        AnsweredQuestions = #{answeredquestions,jdbcType=INTEGER},
+      </if>
+      <if test="bigcategorytype != null">
+        BigCategoryType = #{bigcategorytype,jdbcType=VARCHAR},
+      </if>
+      <if test="smallcategorytype != null">
+        SmallCategoryType = #{smallcategorytype,jdbcType=VARCHAR},
+      </if>
+      <if test="bigcategoryrank != null">
+        BigCategoryRank = #{bigcategoryrank,jdbcType=INTEGER},
+      </if>
+      <if test="smallcategoryrank != null">
+        SmallCategoryRank = #{smallcategoryrank,jdbcType=INTEGER},
+      </if>
+      <if test="briefintro != null">
+        BriefIntro = #{briefintro,jdbcType=NVARCHAR},
+      </if>
+      <if test="getdate != null">
+        GetDate = #{getdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="macaddress != null">
+        MacAddress = #{macaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mujia.amazon_mj.model.Main">
+    update MJ_Product_Main
+    set MainASIN = #{mainasin,jdbcType=VARCHAR},
+      RelationASIN = #{relationasin,jdbcType=VARCHAR},
+      ShopName = #{shopname,jdbcType=VARCHAR},
+      Country = #{country,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=DECIMAL},
+      ratings = #{ratings,jdbcType=INTEGER},
+      CustomerReviews = #{customerreviews,jdbcType=INTEGER},
+      AnsweredQuestions = #{answeredquestions,jdbcType=INTEGER},
+      BigCategoryType = #{bigcategorytype,jdbcType=VARCHAR},
+      SmallCategoryType = #{smallcategorytype,jdbcType=VARCHAR},
+      BigCategoryRank = #{bigcategoryrank,jdbcType=INTEGER},
+      SmallCategoryRank = #{smallcategoryrank,jdbcType=INTEGER},
+      BriefIntro = #{briefintro,jdbcType=NVARCHAR},
+      GetDate = #{getdate,jdbcType=TIMESTAMP},
+      MacAddress = #{macaddress,jdbcType=VARCHAR},
+      UserName = #{username,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

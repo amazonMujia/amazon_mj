@@ -42,15 +42,15 @@
         </javaClientGenerator>
 
         <!--指定每张表的生成策略 -->
-        <table tableName="MJ_Product_CustomerReview" domainObjectName="CustomerReview"></table>
-        <table tableName="MJ_Product_Images_AmazonLink" domainObjectName="ImagesAmazonLink"></table>
-        <table tableName="MJ_Product_KeywordsList" domainObjectName="KeywordsList"></table>
-        <table tableName="MJ_Product_Main" domainObjectName="Main"></table>
-        <table tableName="MJ_Product_Main_Att1" domainObjectName="MainAtt1"></table>
-        <table tableName="MJ_Product_Main_Features" domainObjectName="MainFeatures"></table>
-        <table tableName="MJ_Product_RankList" domainObjectName="RankList"></table>
-        <table tableName="MJ_Product_Spec" domainObjectName="Spec"></table>
-        <table tableName="MJ_Product_task" domainObjectName="task"></table>
+<!--        <table tableName="MJ_Product_CustomerReview" domainObjectName="CustomerReview"></table>-->
+<!--        <table tableName="MJ_Product_Images_AmazonLink" domainObjectName="ImagesAmazonLink"></table>-->
+<!--        <table tableName="MJ_Product_KeywordsList" domainObjectName="KeywordsList"></table>-->
+<!--        <table tableName="MJ_Product_Main" domainObjectName="Main"></table>-->
+<!--        <table tableName="MJ_Product_Main_Att1" domainObjectName="MainAtt1"></table>-->
+<!--        <table tableName="MJ_Product_Main_Features" domainObjectName="MainFeatures"></table>-->
+<!--        <table tableName="MJ_Product_RankList" domainObjectName="RankList"></table>-->
+<!--        <table tableName="MJ_Product_Spec" domainObjectName="Spec"></table>-->
+        <table tableName="MJ_Product_Task" domainObjectName="Task"></table>
 
     </context>
 </generatorConfiguration>

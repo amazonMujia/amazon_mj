@@ -10,13 +10,21 @@ public interface MainMapper {
 
     int deleteByExample(MainExample example);
 
+    int deleteByPrimaryKey(Long id);
+
     int insert(Main record);
 
     int insertSelective(Main record);
 
     List<Main> selectByExample(MainExample example);
 
+    Main selectByPrimaryKey(Long id);
+
     int updateByExampleSelective(@Param("record") Main record, @Param("example") MainExample example);
 
     int updateByExample(@Param("record") Main record, @Param("example") MainExample example);
+
+    int updateByPrimaryKeySelective(Main record);
+
+    int updateByPrimaryKey(Main record);
 }

@@ -2,7 +2,7 @@ package com.mujia.amazon_mj.model;
 
 import java.util.Date;
 
-public class task {
+public class Task {
     private Integer id;
 
     private String mainasin;

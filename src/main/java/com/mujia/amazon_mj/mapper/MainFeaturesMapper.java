@@ -10,13 +10,21 @@ public interface MainFeaturesMapper {
 
     int deleteByExample(MainFeaturesExample example);
 
+    int deleteByPrimaryKey(Integer id);
+
     int insert(MainFeatures record);
 
     int insertSelective(MainFeatures record);
 
     List<MainFeatures> selectByExample(MainFeaturesExample example);
 
+    MainFeatures selectByPrimaryKey(Integer id);
+
     int updateByExampleSelective(@Param("record") MainFeatures record, @Param("example") MainFeaturesExample example);
 
     int updateByExample(@Param("record") MainFeatures record, @Param("example") MainFeaturesExample example);
+
+    int updateByPrimaryKeySelective(MainFeatures record);
+
+    int updateByPrimaryKey(MainFeatures record);
 }

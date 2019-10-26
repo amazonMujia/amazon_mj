@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mujia.amazon_mj.mapper.MainFeaturesMapper">
   <resultMap id="BaseResultMap" type="com.mujia.amazon_mj.model.MainFeatures">
-    <result column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="MainAsin" jdbcType="VARCHAR" property="mainasin" />
     <result column="Features" jdbcType="VARCHAR" property="features" />
     <result column="OrderId" jdbcType="TINYINT" property="orderid" />
@@ -82,6 +82,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MJ_Product_Main_Features
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from MJ_Product_Main_Features
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.mujia.amazon_mj.model.MainFeaturesExample">
     delete from MJ_Product_Main_Features
     <if test="_parameter != null">
@@ -160,5 +170,27 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mujia.amazon_mj.model.MainFeatures">
+    update MJ_Product_Main_Features
+    <set>
+      <if test="mainasin != null">
+        MainAsin = #{mainasin,jdbcType=VARCHAR},
+      </if>
+      <if test="features != null">
+        Features = #{features,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        OrderId = #{orderid,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mujia.amazon_mj.model.MainFeatures">
+    update MJ_Product_Main_Features
+    set MainAsin = #{mainasin,jdbcType=VARCHAR},
+      Features = #{features,jdbcType=VARCHAR},
+      OrderId = #{orderid,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

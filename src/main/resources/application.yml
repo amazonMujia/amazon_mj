@@ -1,13 +1,13 @@
 server:
   port: 8222
   servlet:
-    context-path: /body
+    context-path: /mujia
 database:
-  host: 47.100.223.216
-  port: 3306
-  name: zkong_raspberry
-  username: root
-  password: Zkong.me
+  host: 139.217.232.146
+  port: 1433
+  name: mujia
+  username: MJ_enh2019
+  password: jsHhgd81$763JdV
 #database:
 #  host: 192.168.1.105
 #  port: 3306
@@ -19,7 +19,8 @@ spring:
   #    prefix: classpath:/templates/
   profiles: default
   datasource:
-    url: jdbc:mysql://${database.host}:${database.port}/${database.name}?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:sqlserver://${database.host}:${database.port};Databasename=${database.name}
+#    url: jdbc:sqlserver://${database.host}:${database.port}/${database.name}?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
     username: ${database.username}
     password: ${database.password}
     driver-class-name:
@@ -38,7 +39,8 @@ spring:
       timeBetweenEvictionRunsMillis: 60000
       # 配置一个连接在池中最小生存的时间，单位是毫秒
       minEvictableIdleTimeMillis: 300000
-      validationQuery: SELECT 1 FROM DUAL
+#      validationQuery: SELECT 1 FROM DUAL
+      validation-query: SELECT 1
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
@@ -67,6 +69,8 @@ spring:
         login-username: admin
         # 登录密码
         login-password: 123456
+
+
   servlet:
     multipart:
       max-file-size: 1024MB
@@ -82,27 +86,27 @@ spring:
       enabled: true #设置开启热部署
   freemarker:
     cache: false #页面不加载缓存，修改即时生效
-  rabbitmq:
-    host: 10.64.76.131
-    port: 15672
-    username: guest
-    password: guest
-    listener:
-      simple:
-        #消费者的初始化值，并发消费者的最大值，每个消费者每次监听时可拉取处理的消息数量
-        concurrency: 10
-        max-concurrency: 20
-        prefetch: 5
+#  rabbitmq:
+#    host: 10.64.76.131
+#    port: 15672
+#    username: guest
+#    password: guest
+#    listener:
+#      simple:
+#        #消费者的初始化值，并发消费者的最大值，每个消费者每次监听时可拉取处理的消息数量
+#        concurrency: 10
+#        max-concurrency: 20
+#        prefetch: 5
 
 # 分页配置
-pagehelper:
-  helper-dialect: mysql
-  reasonable: true
-  support-methods-arguments: true
-  params: count=countSql
+#pagehelper:
+#  helper-dialect: mysql
+#  reasonable: true
+#  support-methods-arguments: true
+#  params: count=countSql
 
 
 mybatis:
   mapper-locations: classpath:mappers/**/*.xml
-  type-aliases-package: com.zkong.raspberry.model
-debug: true
+  type-aliases-package: com.mujia.amazong_mj.model
+debug: false
