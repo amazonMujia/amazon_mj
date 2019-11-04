@@ -9,6 +9,7 @@
     <result column="GetDate" jdbcType="TIMESTAMP" property="getdate" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="EndDate" jdbcType="TIMESTAMP" property="enddate" />
+    <result column="mainId" jdbcType="BIGINT" property="mainid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, MainASIN, ASIN, ip, GetDate, status, EndDate
+    id, MainASIN, ASIN, ip, GetDate, status, EndDate, mainId
   </sql>
   <select id="selectByExample" parameterType="com.mujia.amazon_mj.model.TaskExample" resultMap="BaseResultMap">
     select
@@ -104,10 +105,22 @@
   <insert id="insert" parameterType="com.mujia.amazon_mj.model.Task">
     insert into MJ_Product_Task (id, MainASIN, ASIN, 
       ip, GetDate, status, 
-      EndDate)
+      EndDate, mainId)
     values (#{id,jdbcType=INTEGER}, #{mainasin,jdbcType=VARCHAR}, #{asin,jdbcType=VARCHAR}, 
       #{ip,jdbcType=VARCHAR}, #{getdate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
-      #{enddate,jdbcType=TIMESTAMP})
+      #{enddate,jdbcType=TIMESTAMP}, #{mainid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertForDate" parameterType="java.util.List">
+    set IDENTITY_INSERT MJ_Product_Task on
+    insert into MJ_Product_Task (id, MainASIN, ASIN,
+      ip, GetDate, status,
+      EndDate, mainId)
+    values 
+    <foreach collection="list" item="item" index= "index" separator =",">
+      (#{item.id,jdbcType=INTEGER}, #{item.mainasin,jdbcType=VARCHAR}, #{item.asin,jdbcType=VARCHAR},
+      #{item.ip,jdbcType=VARCHAR}, #{item.getdate,jdbcType=TIMESTAMP}, #{item.status,jdbcType=INTEGER},
+      #{item.enddate,jdbcType=TIMESTAMP}, #{item.mainid,jdbcType=BIGINT})
+    </foreach>
   </insert>
   <insert id="insertSelective" parameterType="com.mujia.amazon_mj.model.Task">
     insert into MJ_Product_Task
@@ -133,6 +146,9 @@
       <if test="enddate != null">
         EndDate,
       </if>
+      <if test="mainid != null">
+        mainId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -155,6 +171,9 @@
       </if>
       <if test="enddate != null">
         #{enddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainid != null">
+        #{mainid,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -188,6 +207,9 @@
       <if test="record.enddate != null">
         EndDate = #{record.enddate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.mainid != null">
+        mainId = #{record.mainid,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +223,8 @@
       ip = #{record.ip,jdbcType=VARCHAR},
       GetDate = #{record.getdate,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER},
-      EndDate = #{record.enddate,jdbcType=TIMESTAMP}
+      EndDate = #{record.enddate,jdbcType=TIMESTAMP},
+      mainId = #{record.mainid,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +250,9 @@
       <if test="enddate != null">
         EndDate = #{enddate,jdbcType=TIMESTAMP},
       </if>
+      <if test="mainid != null">
+        mainId = #{mainid,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -237,7 +263,8 @@
       ip = #{ip,jdbcType=VARCHAR},
       GetDate = #{getdate,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
-      EndDate = #{enddate,jdbcType=TIMESTAMP}
+      EndDate = #{enddate,jdbcType=TIMESTAMP},
+      mainId = #{mainid,jdbcType=BIGINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

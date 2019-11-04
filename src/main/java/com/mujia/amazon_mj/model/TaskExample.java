@@ -554,6 +554,66 @@ public class TaskExample {
             addCriterion("EndDate not between", value1, value2, "enddate");
             return (Criteria) this;
         }
+
+        public Criteria andMainidIsNull() {
+            addCriterion("mainId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidIsNotNull() {
+            addCriterion("mainId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidEqualTo(Long value) {
+            addCriterion("mainId =", value, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidNotEqualTo(Long value) {
+            addCriterion("mainId <>", value, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidGreaterThan(Long value) {
+            addCriterion("mainId >", value, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidGreaterThanOrEqualTo(Long value) {
+            addCriterion("mainId >=", value, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidLessThan(Long value) {
+            addCriterion("mainId <", value, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidLessThanOrEqualTo(Long value) {
+            addCriterion("mainId <=", value, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidIn(List<Long> values) {
+            addCriterion("mainId in", values, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidNotIn(List<Long> values) {
+            addCriterion("mainId not in", values, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidBetween(Long value1, Long value2) {
+            addCriterion("mainId between", value1, value2, "mainid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMainidNotBetween(Long value1, Long value2) {
+            addCriterion("mainId not between", value1, value2, "mainid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

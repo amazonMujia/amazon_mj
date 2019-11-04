@@ -35,6 +35,16 @@ public class MainService {
     }
 
 
+    public Main MainForASIN(String mainAsin,String ip) {
+        MainExample mainExample=new MainExample();
+        MainExample.Criteria criteria=mainExample.createCriteria();
+        criteria.andMainasinEqualTo(mainAsin);
+        criteria.andMacaddressEqualTo(ip);
+        mainExample.setOrderByClause("GetDate"+" desc");
+        List<Main> mainList=mainMapper.selectByExample(mainExample);
+        return mainList.get(0);
+    }
+
     public int update(Main main) {
         return mainMapper.updateByPrimaryKeySelective(main);
     }

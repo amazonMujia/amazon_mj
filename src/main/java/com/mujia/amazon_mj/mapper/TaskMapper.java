@@ -14,6 +14,8 @@ public interface TaskMapper {
 
     int insert(Task record);
 
+    int insertForDate(List<Task> taskList);
+
     int insertSelective(Task record);
 
     List<Task> selectByExample(TaskExample example);

@@ -33,6 +33,13 @@ public class SpecService {
     public int insert(Spec spec) {
         return specMapper.insertSelective(spec);
     }
+    public int insertDataForAll(List<Spec> dataList) {
+        int count = 0;
+        for (Spec spec : dataList) {
+            count += specMapper.insertSelective(spec);
+        }
+        return count;
+    }
 
 
 //    public int update(Spec spec) {

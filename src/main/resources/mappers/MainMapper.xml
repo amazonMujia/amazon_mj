@@ -113,7 +113,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mujia.amazon_mj.model.Main">
+  <insert id="insert" parameterType="com.mujia.amazon_mj.model.Main" useGeneratedKeys="true"  keyProperty="id">
     insert into MJ_Product_Main (id, MainASIN, RelationASIN, 
       ShopName, Country, rate, 
       ratings, CustomerReviews, AnsweredQuestions, 
@@ -127,7 +127,8 @@
       #{smallcategoryrank,jdbcType=INTEGER}, #{briefintro,jdbcType=NVARCHAR}, #{getdate,jdbcType=TIMESTAMP}, 
       #{macaddress,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.mujia.amazon_mj.model.Main">
+  <insert id="insertSelective" parameterType="com.mujia.amazon_mj.model.Main" keyProperty="id"
+          keyColumn="id" useGeneratedKeys="true" >
     insert into MJ_Product_Main
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

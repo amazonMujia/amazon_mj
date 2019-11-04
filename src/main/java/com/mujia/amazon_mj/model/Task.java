@@ -17,6 +17,8 @@ public class Task {
 
     private Date enddate;
 
+    private Long mainid;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class Task {
 
     public void setEnddate(Date enddate) {
         this.enddate = enddate;
+    }
+
+    public Long getMainid() {
+        return mainid;
+    }
+
+    public void setMainid(Long mainid) {
+        this.mainid = mainid;
     }
 }
