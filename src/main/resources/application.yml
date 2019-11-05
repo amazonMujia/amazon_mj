@@ -2,18 +2,8 @@ server:
   port: 8222
   servlet:
     context-path: /mujia
-database:
-  host: 139.217.232.146
-  port: 1433
-  name: mujia
-  username: MJ_enh2019
-  password: jsHhgd81$763JdV
-#database:
-#  host: 192.168.1.105
-#  port: 3306
-#  name: zkong_raspberry
-#  username: root
-#  password: 1qaz@WSX
+
+
 spring:
   #  thymeleaf:
   #    prefix: classpath:/templates/
@@ -86,17 +76,6 @@ spring:
       enabled: true #设置开启热部署
   freemarker:
     cache: false #页面不加载缓存，修改即时生效
-#  rabbitmq:
-#    host: 10.64.76.131
-#    port: 15672
-#    username: guest
-#    password: guest
-#    listener:
-#      simple:
-#        #消费者的初始化值，并发消费者的最大值，每个消费者每次监听时可拉取处理的消息数量
-#        concurrency: 10
-#        max-concurrency: 20
-#        prefetch: 5
 
 # 分页配置
 #pagehelper:
